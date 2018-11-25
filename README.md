@@ -1,6 +1,6 @@
 # Gerenciando imagens Docker no Nexus
 
-Com o Sonatype Nexus 3 é possível criar repositórios privados para gerenciamento de imagens, artefatos e pacotes de sistema operacionais.
+Com o Sonatype Nexus 3 é possível criar diversos repositórios privados para gerenciamento de imagens, artefatos e pacotes de sistema operacionais.
 
 -   Armazene e distribua o Maven / Java, o npm, o NuGet, o RubyGems, o Docker, o P2, o OBR, o APT e o YUM, entre outros.
 -   Gerencie componentes do dev através da entrega: binários, containers, pacotes de sistemas operacionais e muito mais. 
