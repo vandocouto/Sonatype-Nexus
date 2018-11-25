@@ -247,7 +247,6 @@ kubectl apply -f ingress.yaml
 ```
 
 Depois que a implantação estiver concluída e a interface do Nexus 3 estiver disponível no nexus.dominio.com.br, basta criar o repositório do docker. 
-
 Entre no Nexus com admin / admin123, vá para “Server administration and configuration”, “Repositories”, “Create repository”, “docker (hosted)”
 e publique o docker hosted http na porta 5000.
 
@@ -260,9 +259,11 @@ Create Repository
 ![enter image description here](https://lh3.googleusercontent.com/NW9iaSpYhE4d0Tf1DyElIZH-URA0LlS6R15CpbGYaqTlpzkJW47E-j_LRg8T3AuvJE-f-FTl0vPVpw=s1024 "Nexus-2")
 
 docker (hosted)
+
 ![enter image description here](https://lh3.googleusercontent.com/YXTF8noB4qmUJ3_CJbCPw85j9gdlgBS4XOEEzaT4MqRvlQCpf7scz0mzrzWVMTRCTst_JbrtogZ3Pw=s1024 "Nexus-3")
 
 docker-privado
+
 ![enter image description here](https://lh3.googleusercontent.com/HX5PcIm6sEA6WmjNJyPr8Cu9hkE9xAXSDZO3bN6nFbwdYdOeGkt_UpBSX2weAP4_ZUWizZcIQZ-nlw=s1024 "Nexus-4")
 
 
