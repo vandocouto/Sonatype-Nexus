@@ -170,11 +170,11 @@ metadata:
   namespace: nexus
 spec:
   ports:
-  - port: 80
+ - port: 80
     targetPort: 8081
     protocol: TCP
     name: http
-  - port: 5000
+ - port: 5000
     targetPort: 5000
     protocol: TCP
     name: docker
@@ -198,11 +198,11 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   tls:
-  - hosts:
+ - hosts:
     - nexus.dominio.com.br
     secretName: nexus-tls
   rules:
-  - host: nexus.dominio.com.br
+ - host: nexus.dominio.com.br
     http:
       paths:
       - path: /
@@ -224,11 +224,11 @@ metadata:
     nginx.org/client-max-body-size: "100m"
 spec:
   tls:
-  - hosts:
+ - hosts:
     - docker.dominio.com.br
     secretName: docker-tls
   rules:
-  - host: docker.dominio.com.br
+ - host: docker.dominio.com.br
     http:
       paths:
       - path: /
@@ -236,4 +236,11 @@ spec:
           serviceName: nexus-service
           servicePort: 5000
 ```
-![enter image description here](https://picasaweb.google.com/112113059054380674967/6627613519930477617#6627613520121522898 "Nexus1")
+Depois que a implantação estiver concluída e a interface do Nexus 3 estiver disponível no nexus.dominio.com.br, basta criar o repositório do docker. 
+Entre no Nexus com admin / admin123, vá para “Server administration and configuration”, “Repositories”, “Create repository”, “docker (hosted)”
+e publique o docker hosted http na porta 5000.
+
+Nexus:
+
+![enter image description here](https://lh3.googleusercontent.com/V-sYzYwT0914Q98id2s2OMOyANQBMLjJDIUxzKWZmB1laIEvEn3LiUu7k-xR2s3By95zK-REOHryyQ "Nexus-Kubernetes")
+
