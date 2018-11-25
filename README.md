@@ -253,3 +253,19 @@ docker (hosted)
 
 docker-privado
 ![enter image description here](https://lh3.googleusercontent.com/HX5PcIm6sEA6WmjNJyPr8Cu9hkE9xAXSDZO3bN6nFbwdYdOeGkt_UpBSX2weAP4_ZUWizZcIQZ-nlw=s1024 "Nexus-4")
+
+
+Testando! Realizando o login do repositório,
+
+```bash
+docker login docker.dominio.com.br
+Username: admin
+Password: admin123
+Login Succeeded
+```
+Testando o push da imagem ubuntu para o repositório docker.dominio.com.br.
+```bash
+docker pull ubuntu
+docker tag ubuntu docker.dominio.com.br/ubuntu:1.0.0
+docker push docker.dominio.com.br/ubuntu:1.0.0
+```
