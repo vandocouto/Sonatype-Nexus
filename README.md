@@ -7,7 +7,7 @@ Com o Sonatype Nexus 3 é possível criar repositórios privados para gerenciame
 -   Suporte incrível para o ecossistema Java Virtual Machine (JVM), incluindo Gradle, Ant, Maven e Ivy.
 -   Compatível com ferramentas populares como Eclipse, IntelliJ, Hudson, Jenkins, Puppet, Chef, Docker e muito mais.
 
-## Pré requisitos:
+## Pré-requisitos:
 
 * Cluster Kubernetes
 * Domain Name Server
