@@ -256,14 +256,14 @@ docker-privado
 
 
 ## Testando! 
-Realizando o login do repositório.
+Realizando o login
 ```bash
 docker login docker.dominio.com.br
 Username: admin
 Password: admin123
 Login Succeeded
 ```
-Testando o push da imagem ubuntu para o repositório docker.dominio.com.br.
+Testando o push da imagem ubuntu para o repositório docker.dominio.com.br
 ```bash
 docker pull ubuntu
 docker tag ubuntu docker.dominio.com.br/ubuntu:1.0.0
