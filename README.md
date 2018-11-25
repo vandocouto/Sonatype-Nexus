@@ -1,13 +1,17 @@
-# Gerenciando imagens Docker no Nexus
+# Gerenciando imagens Docker através do Sonatype - Nexus
 
-Com o Sonatype Nexus 3 é possível criar diversos repositórios privados para gerenciamento de imagens, artefatos e pacotes de sistema operacionais.
+Com o Sonatype Nexus 3 é possível criar vários repositórios privados para gerenciamento de imagens, artefatos e pacotes de sistema operacionais.
+
+**Algumas das funcionalidades:**
 
 -   Armazene e distribua o Maven / Java, o npm, o NuGet, o RubyGems, o Docker, o P2, o OBR, o APT e o YUM, entre outros.
 -   Gerencie componentes do dev através da entrega: binários, containers, pacotes de sistemas operacionais e muito mais. 
 -   Suporte incrível para o ecossistema Java Virtual Machine (JVM), incluindo Gradle, Ant, Maven e Ivy.
 -   Compatível com ferramentas populares como Eclipse, IntelliJ, Hudson, Jenkins, Puppet, Chef, Docker e muito mais.
 
-## Pré-requisito:
+**Neste tutorial irei configurar o Nexus em um Cluster Kubernetes.**
+
+## Pré-requisitos:
 
 * Cluster Kubernetes
 * Domain Name Server
@@ -16,7 +20,7 @@ Com o Sonatype Nexus 3 é possível criar diversos repositórios privados para g
 
 ## Criando as receitas para o Kubernetes
 
-Passo 1 - Criando o objeto Namespace
+Passo 1 - Criando o objeto _Namespace_
 ```bash
 vim namespaces.yaml
 ```
@@ -26,14 +30,13 @@ kind: Namespace
 metadata:
   name: nexus
 ```
-Passo 2 - Criando o namespaces nexus
 ```bash
 kubectl apply -f namespaces.yaml
 namespace/nexus created
 ```
-Passo 3 - Criando o diretório /storage/nexus em um Worker do Cluster Kubernetes.
+Passo 3 - Criando o diretório /storage/nexus no node que vai executar o POD do Nexus.
 
-Como não possuo um storage compartilhado neste tutorial, irei então utilizar um dos Worker do Cluster para o Nexus. E no deployment irei informar qual o worker que o Nexus irá hospedar o POD, tudo isso através do parametro nodeSelector. 
+OBS:  No deployment irei informar através qual será o nodeSelector do worker que vai executar o POD do Nexus.
 
 ```bash
 mkdir -p /storage/nexus && chmod 777 /storage/nexus -R
@@ -73,7 +76,7 @@ spec:
       # CHANGE ME
       storage: 30Gi
 ```
-Passo 5 - Criando o secret nexus-tls e docker-tls 
+Passo 5 - Criando o objeto Secret que irá armazenar as chaves .crt e .key do nexus.dominio.com.br  e docker.dominio.com.br
 ```bash
 vim secret.yaml
 ```
@@ -101,13 +104,15 @@ data:
 Para gerar o certificado utilize: [Letsencrypt](https://letsencrypt.org/)
 Para codificar o .crt e .key utilize: [Base64encode](https://www.base64encode.org/)
 
+Passo 6 - Criando o Label.
+_Listando todos os labels de todos os nodes_
 ```bash
 kubectl get nodes --show-labels
 NAME           STATUS   ROLES    AGE   VERSION   LABELS
 kubernetes-1   Ready    master   14d   v1.12.2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/hostname=kubernetes-1,node-role.kubernetes.io/master=
 kubernetes-2   Ready    node     14d   v1.12.2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/hostname=kubernetes-2,node-role.kubernetes.io/node=
 ```
-Passo 6 - Criando o Label nexusStorage=nexus para o node kubernetes-2. 
+Passo 7 - Criando o Label nexusStorage=nexus para o node kubernetes-2. 
 Neste node contém o diretório /storage/nexus, diretório que será mapeado para o POD do Nexus.
 ```bash
 kubectl label nodes kubernetes-2 nexusStorage=nexus
@@ -116,7 +121,6 @@ _Caso precise excluir o Label_:
 ```bash
 kubectl label node kubernetes-2 nexusStorage-
 ```
-Passo 7 - Listando os labels de todos os nodes
 ```bash
 kubectl get nodes --show-labels
 NAME           STATUS   ROLES    AGE   VERSION   LABELS
@@ -232,3 +236,4 @@ spec:
           serviceName: nexus-service
           servicePort: 5000
 ```
+![enter image description here](https://picasaweb.google.com/112113059054380674967/6627613519930477617#6627613520121522898 "Nexus1")
