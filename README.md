@@ -242,5 +242,6 @@ e publique o docker hosted http na porta 5000.
 
 Nexus:
 
-![enter image description here](https://lh3.googleusercontent.com/V-sYzYwT0914Q98id2s2OMOyANQBMLjJDIUxzKWZmB1laIEvEn3LiUu7k-xR2s3By95zK-REOHryyQ "Nexus-Kubernetes")
+![enter image description here](https://lh3.googleusercontent.com/V-sYzYwT0914Q98id2s2OMOyANQBMLjJDIUxzKWZmB1laIEvEn3LiUu7k-xR2s3By95zK-REOHryyQ=s1024 "Nexus-Kubernetes")
 
+3
