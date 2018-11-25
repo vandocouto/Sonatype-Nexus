@@ -1,4 +1,4 @@
-# Gerenciando imagens Docker no Nexus
+# Gerenciando imagens Docker com no Nexus
 
 Com o Sonatype Nexus 3 é possível criar repositórios privados para gerenciamento de imagens, artefatos e pacotes de sistema operacionais.
 
@@ -7,7 +7,7 @@ Com o Sonatype Nexus 3 é possível criar repositórios privados para gerenciame
 -   Suporte incrível para o ecossistema Java Virtual Machine (JVM), incluindo Gradle, Ant, Maven e Ivy.
 -   Compatível com ferramentas populares como Eclipse, IntelliJ, Hudson, Jenkins, Puppet, Chef, Docker e muito mais.
 
-## Pré-requisitos:
+## Pré-requisito:
 
 * Cluster Kubernetes
 * Domain Name Server
@@ -195,10 +195,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - nexus.d2d.com.br
+    - nexus.dominio.com.br
     secretName: nexus-tls
   rules:
-  - host: nexus.d2d.com.br
+  - host: nexus.dominio.com.br
     http:
       paths:
       - path: /
@@ -221,10 +221,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - docker.d2d.com.br
+    - docker.dominio.com.br
     secretName: docker-tls
   rules:
-  - host: docker.d2d.com.br
+  - host: docker.dominio.com.br
     http:
       paths:
       - path: /
