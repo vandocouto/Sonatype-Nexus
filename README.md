@@ -18,7 +18,7 @@ Com o Sonatype Nexus 3 é possível criar vários repositórios privados para ge
 * Letsencrypt
 * Nginx Ingress
 
-## Criando as receitas para o Kubernetes
+## Criando os objetos:
 
 Passo 1 - Criando o objeto _Namespace_
 ```bash
@@ -240,7 +240,7 @@ Depois que a implantação estiver concluída e a interface do Nexus 3 estiver d
 Entre no Nexus com admin / admin123, vá para “Server administration and configuration”, “Repositories”, “Create repository”, “docker (hosted)”
 e publique o docker hosted http na porta 5000.
 
-Nexus:
+## Acessando o Nexus
 
 ![enter image description here](https://lh3.googleusercontent.com/V-sYzYwT0914Q98id2s2OMOyANQBMLjJDIUxzKWZmB1laIEvEn3LiUu7k-xR2s3By95zK-REOHryyQ=s1024 "Nexus-Kubernetes")
 
@@ -255,8 +255,8 @@ docker-privado
 ![enter image description here](https://lh3.googleusercontent.com/HX5PcIm6sEA6WmjNJyPr8Cu9hkE9xAXSDZO3bN6nFbwdYdOeGkt_UpBSX2weAP4_ZUWizZcIQZ-nlw=s1024 "Nexus-4")
 
 
-Testando! Realizando o login do repositório,
-
+## Testando! 
+Realizando o login do repositório.
 ```bash
 docker login docker.dominio.com.br
 Username: admin
