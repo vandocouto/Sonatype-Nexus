@@ -237,7 +237,17 @@ spec:
           serviceName: nexus-service
           servicePort: 5000
 ```
+Passo 11 - Executando o kubect apply em todos os objetos criados
+```bash
+kubectl apply -f storage.yaml
+kubectl apply -f secret.yaml
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl apply -f ingress.yaml
+```
+
 Depois que a implantação estiver concluída e a interface do Nexus 3 estiver disponível no nexus.dominio.com.br, basta criar o repositório do docker. 
+
 Entre no Nexus com admin / admin123, vá para “Server administration and configuration”, “Repositories”, “Create repository”, “docker (hosted)”
 e publique o docker hosted http na porta 5000.
 
