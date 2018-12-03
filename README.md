@@ -50,32 +50,32 @@ vim storage.yaml
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: volume-local
+  name: volume-nexus
   labels:
     type: local
 spec:
+  storageClassName: nexus
   capacity:
-    storage: 30Gi
+    storage: 150Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    # CHANGE ME
     path: "/storage/nexus"
 ---
-apiVersion: v1
 kind: PersistentVolumeClaim
+apiVersion: v1
 metadata:
   name: nexus-pvc
   namespace: nexus
   labels:
-    app: nexus
+    name: nexus
 spec:
+  storageClassName: nexus
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      # CHANGE ME
-      storage: 30Gi
+      storage: 150Gi
 ```
 Passo 5 - Criando o objeto Secret que irá armazenar as chaves .crt e .key do nexus.dominio.com.br  e docker.dominio.com.br
 ```bash
@@ -140,7 +140,7 @@ spec:
   template:
     metadata:
       labels:
-        app: nexus
+        name: nexus
     spec:
       containers:
       - image: sonatype/nexus3
@@ -171,16 +171,16 @@ metadata:
   namespace: nexus
 spec:
   ports:
- - port: 80
+  - port: 80
     targetPort: 8081
     protocol: TCP
     name: http
- - port: 5000
+  - port: 5000
     targetPort: 5000
     protocol: TCP
     name: docker
   selector:
-    app: nexus
+    name: nexus
 ```
 Passo 10 - Criando o objeto Ingress
 Documentação do [Ingress com Nginx](https://github.com/nginxinc/kubernetes-ingress/blob/master/docs/installation.md) 
@@ -199,11 +199,11 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   tls:
- - hosts:
-    - nexus.dominio.com.br
+  - hosts:
+    - nexus.d2d.com.br
     secretName: nexus-tls
   rules:
- - host: nexus.dominio.com.br
+  - host: nexus.d2d.com.br
     http:
       paths:
       - path: /
@@ -225,11 +225,11 @@ metadata:
     nginx.org/client-max-body-size: "100m"
 spec:
   tls:
- - hosts:
-    - docker.dominio.com.br
+  - hosts:
+    - docker.d2d.com.br
     secretName: docker-tls
   rules:
- - host: docker.dominio.com.br
+  - host: docker.d2d.com.br
     http:
       paths:
       - path: /
